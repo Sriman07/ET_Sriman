@@ -72,11 +72,11 @@ def generate_route_map(optimal_plan, risk_assessment):
             
     return m
 
-# Caching the API Calls to save quota and make the demo instant
+# Caching layer: Reduces API latency and enforces rate-limit compliance
 @st.cache_data(show_spinner=False)
 def execute_pipeline_cached(scenario_path):
     risk = run_risk_agent(scenario_path)
-    time.sleep(2) # Pacing out the API calls to avoid 429 errors
+    time.sleep(2) 
     sim = run_scenario_modeller(risk)
     time.sleep(2)
     math_plan = run_optimization_engine(risk)
@@ -139,7 +139,7 @@ if st.session_state.dashboard_data is not None:
 
     st.divider()
 
-    # --- INJECTED FIX: BACKTEST VALIDATION PANEL ---
+    # --- HISTORICAL BACKTEST VALIDATION PANEL ---
     if "BACKTEST" in scenario_option:
         st.markdown("### 📊 Historical Backtest Validation — US-Iran Standoff, January 2025")
         col_pred, col_actual = st.columns(2)
@@ -191,11 +191,9 @@ if st.session_state.dashboard_data is not None:
         st.write(render_timeline(exec_brief['action_timeline']['next_6_hours']))
     with t2:
         st.warning("**T+24 Hours (Tactical)**")
-        # FIXED: Wrapped in render_timeline to prevent raw JSON dumps
         st.write(render_timeline(exec_brief['action_timeline']['next_24_hours']))
     with t3:
         st.success("**T+48 Hours (Strategic)**")
-        # FIXED: Wrapped in render_timeline to prevent raw JSON dumps
         st.write(render_timeline(exec_brief['action_timeline']['next_48_hours']))
         
     st.divider()
