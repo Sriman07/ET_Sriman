@@ -1,0 +1,10 @@
+{
+    "timestamp": "2026-07-18T09:00:00Z",
+    "signals": [
+        "REUTERS: Unidentified drones spotted hovering near three VLCC crude tankers in the Strait of Hormuz.",
+        "BRENT CRUDE: Spot price jumped 4.2% in the last 4 hours to $94/barrel.",
+        "MARINE TRAFFIC (AIS): 14 tankers belonging to major operators have dropped anchor outside the Persian Gulf, refusing to transit.",
+        "US STATE DEPT: Issues Level 4 advisory for commercial maritime traffic in the Omani Gulf sector."
+    ],
+    "target_corridor": "Strait of Hormuz"
+}

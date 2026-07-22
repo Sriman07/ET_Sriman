@@ -1,0 +1,9 @@
+{
+    "timestamp": "2026-07-18T09:00:00Z",
+    "signals": [
+        "REUTERS: Standard maritime traffic volume observed in the Persian Gulf.",
+        "BRENT CRUDE: Spot price stable at $81/barrel.",
+        "MARINE TRAFFIC (AIS): No significant delays or rerouting detected across major chokepoints."
+    ],
+    "target_corridor": "Strait of Hormuz"
+}

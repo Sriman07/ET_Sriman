@@ -1,0 +1,10 @@
+{
+    "timestamp": "2025-01-12T04:00:00Z",
+    "signals": [
+        "REUTERS: Unprecedented escalation in the Persian Gulf as US and Iranian naval assets engage in standoff.",
+        "BRENT CRUDE: Pre-market futures indicating massive volatility, breaking $85/barrel.",
+        "MARINE TRAFFIC (AIS): Total freeze on tanker movements entering or exiting the Strait of Hormuz pending military de-escalation.",
+        "GLOBAL INTEL: Analysts predicting prolonged disruption, SPR releases being discussed globally."
+    ],
+    "target_corridor": "Strait of Hormuz"
+}
