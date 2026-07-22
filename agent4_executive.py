@@ -16,7 +16,7 @@ def run_executive_advisor(risk_data, simulation_data, optimal_plan):
     risk_score = risk_data.get('risk_score', 0)
     savings_val = optimal_plan.get('optimization_savings_millions', 0)
     
-    # THE FIX: Dynamic prompt instruction based on risk level
+    # Dynamic instruction routing: Adjusts optimization metrics based on baseline thresholds
     if risk_score < 30:
         savings_instruction = "Do NOT mention savings figures. The current allocation is optimal. Focus on maintaining operational stability and continuous monitoring."
     else:
