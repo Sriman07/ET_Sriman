@@ -21,7 +21,7 @@ def run_risk_agent(scenario_file_path):
     signals_text = "\n".join(raw_data['signals'])
     corridor = raw_data['target_corridor']
     
-    # 2. Craft the Executive Prompt
+    
     prompt = f"""
     You are an elite geopolitical risk analyst for the Indian Ministry of Petroleum.
     Review the following real-time intelligence signals regarding the {corridor}:
@@ -37,13 +37,13 @@ def run_risk_agent(scenario_file_path):
     - "executive_summary": a 2-sentence summary of the threat.
     """
     
-    # 3. Call Gemini (Using Flash for speed and massive context)
+    # 3. Execute LLM call via Gemini 2.5 Flash for high-context ingestion
     response = client.models.generate_content(
         model='gemini-2.5-flash',
         contents=prompt,
         config=types.GenerateContentConfig(
-            response_mime_type="application/json", # Forces strict JSON output
-            temperature=0.2 # Low temperature for analytical consistency
+            response_mime_type="application/json", 
+            temperature=0.2 
         ),
     )
     
