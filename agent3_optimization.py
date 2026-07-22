@@ -7,8 +7,7 @@ def run_optimization_engine(risk_assessment):
     Linear Programming solver to find the optimal crude routing strategy.
     """
     print("\nAgent 3: Initializing Operations Research Mathematical Solver...")
-    
-    # --- 1. STATIC LOGISTICS DATA ---
+
     # Integrated 'Strategic_Petroleum_Reserve' as an emergency nodal asset
     suppliers = {
         'Iraq': {'capacity': 1.2, 'base_price': 80.0},
@@ -16,7 +15,7 @@ def run_optimization_engine(risk_assessment):
         'Saudi_Arabia': {'capacity': 1.0, 'base_price': 85.0},
         'West_Africa': {'capacity': 0.8, 'base_price': 82.0},
         'USA': {'capacity': 0.6, 'base_price': 83.0},
-        'Strategic_Petroleum_Reserve': {'capacity': 4.5, 'base_price': 130.0} # Extreme penalty cost
+        'Strategic_Petroleum_Reserve': {'capacity': 4.5, 'base_price': 130.0} 
     }
     
     national_demand = 4.5 
@@ -30,7 +29,7 @@ def run_optimization_engine(risk_assessment):
         ('Strategic_Petroleum_Reserve', 'Strategic Drawdown'): {'cost': 0.0, 'capacity': 4.5}
     }
 
-    # --- 2. APPLY AI RISK CONSTRAINTS ---
+    # 2. APPLY AI RISK CONSTRAINTS
     target_corridor = "Strait of Hormuz"
     capacity_lost = risk_assessment.get('capacity_reduction_estimate', 0)
     risk_score = risk_assessment.get('risk_score', 0)
@@ -42,7 +41,7 @@ def run_optimization_engine(risk_assessment):
                 data['capacity'] = data['capacity'] * (1 - capacity_lost)
                 data['cost'] = data['cost'] + (risk_score * 0.05) 
 
-    # --- 3. DEFINE LINEAR PROGRAMMING PROBLEM ---
+    # 3. DEFINE LINEAR PROGRAMMING PROBLEM
     prob = pulp.LpProblem("Crude_Supply_Optimization", pulp.LpMinimize)
     route_vars = pulp.LpVariable.dicts("Route", shipping_routes.keys(), lowBound=0, cat='Continuous')
 
@@ -59,10 +58,10 @@ def run_optimization_engine(risk_assessment):
     for (sup, cor), data in shipping_routes.items():
         prob += route_vars[(sup, cor)] <= data['capacity'], f"Corridor_Cap_{sup}_{cor}"
 
-    # --- 4. SOLVE ---
+    #4. SOLVE
     prob.solve(pulp.PULP_CBC_CMD(msg=0))
 
-    # --- 5. FORMAT OUTPUT ---
+    #5. FORMAT OUTPUT
     optimal_routes = []
     total_cost = pulp.value(prob.objective)
     
